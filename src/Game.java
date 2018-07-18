@@ -46,7 +46,7 @@ class Game {
     static void turning(){
 
         int select = scanner.nextInt();
-        chose = ArrayUtils.removeElement(chose, select);
+        chose =  ArrayUtils.removeElement(chose, select);
         if (select == 1){
             Matrix.i = 0;
             Matrix.j = 0;
@@ -88,23 +88,25 @@ class Game {
 
     }
     static void checkWin(){
-        if (turnNum == 9){
+        boolean xWon = Matrix.s[0][0].equals("Х") && Matrix.s[0][1].equals("Х") && Matrix.s[0][2].equals("Х") || Matrix.s[0][1].equals("X") && Matrix.s[1][1].equals("X") && Matrix.s[2][1].equals("X") ||
+                Matrix.s[1][0].equals("Х") && Matrix.s[1][1].equals("Х") && Matrix.s[1][2].equals("Х") || Matrix.s[2][0].equals("Х") && Matrix.s[2][1].equals("Х") && Matrix.s[2][2].equals("Х") ||
+                Matrix.s[0][0].equals("Х") && Matrix.s[1][1].equals("Х") && Matrix.s[2][2].equals("Х") || Matrix.s[0][2].equals("Х") && Matrix.s[1][1].equals("Х") && Matrix.s[2][0].equals("Х") ||
+                Matrix.s[0][0].equals("Х") && Matrix.s[1][0].equals("Х") && Matrix.s[2][0].equals("Х") || Matrix.s[0][2].equals("Х") && Matrix.s[1][2].equals("Х") && Matrix.s[2][2].equals("Х");
+        boolean zeroWon = Matrix.s[0][0].equals("0") && Matrix.s[0][1].equals("0") && Matrix.s[0][2].equals("0") || Matrix.s[0][1].equals("0") && Matrix.s[1][1].equals("0") && Matrix.s[2][1].equals("0") ||
+                Matrix.s[1][0].equals("0") && Matrix.s[1][1].equals("0") && Matrix.s[1][2].equals("0") || Matrix.s[2][0].equals("0") && Matrix.s[2][1].equals("0") && Matrix.s[2][2].equals("0") ||
+                Matrix.s[0][0].equals("0") && Matrix.s[1][1].equals("0") && Matrix.s[2][2].equals("0") || Matrix.s[0][2].equals("0") && Matrix.s[1][1].equals("0") && Matrix.s[2][0].equals("0") ||
+                Matrix.s[0][0].equals("0") && Matrix.s[1][0].equals("0") && Matrix.s[2][0].equals("0") || Matrix.s[0][2].equals("0") && Matrix.s[1][2].equals("0") && Matrix.s[2][2].equals("0");
+        if (turnNum == 9&& !xWon && !zeroWon){
             gameOn = false;
             System.out.println("Nobody won !");
 
         }
-        if(Matrix.s[0][0].equals("Х") && Matrix.s[0][1].equals("Х") && Matrix.s[0][2].equals("Х") || Matrix.s[0][1].equals("X") && Matrix.s[1][1].equals("X") && Matrix.s[2][1].equals("X") ||
-                Matrix.s[1][0].equals("Х") && Matrix.s[1][1].equals("Х") && Matrix.s[1][2].equals("Х") || Matrix.s[2][0].equals("Х") && Matrix.s[2][1].equals("Х") && Matrix.s[2][2].equals("Х") ||
-                Matrix.s[0][0].equals("Х") && Matrix.s[1][1].equals("Х") && Matrix.s[2][2].equals("Х") || Matrix.s[0][2].equals("Х") && Matrix.s[1][1].equals("Х") && Matrix.s[2][0].equals("Х") ||
-                Matrix.s[0][0].equals("Х") && Matrix.s[1][0].equals("Х") && Matrix.s[2][0].equals("Х") || Matrix.s[0][2].equals("Х") && Matrix.s[1][2].equals("Х") && Matrix.s[2][2].equals("Х")) {
+        if(xWon) {
             gameOn = false;
             System.out.println("eX won !");
 
         }
-        if(Matrix.s[0][0].equals("0") && Matrix.s[0][1].equals("0") && Matrix.s[0][2].equals("0") || Matrix.s[0][1].equals("0") && Matrix.s[1][1].equals("0") && Matrix.s[2][1].equals("0") ||
-                Matrix.s[1][0].equals("0") && Matrix.s[1][1].equals("0") && Matrix.s[1][2].equals("0") || Matrix.s[2][0].equals("0") && Matrix.s[2][1].equals("0") && Matrix.s[2][2].equals("0") ||
-                Matrix.s[0][0].equals("0") && Matrix.s[1][1].equals("0") && Matrix.s[2][2].equals("0") || Matrix.s[0][2].equals("0") && Matrix.s[1][1].equals("0") && Matrix.s[2][0].equals("0") ||
-                Matrix.s[0][0].equals("0") && Matrix.s[1][0].equals("0") && Matrix.s[2][0].equals("0") || Matrix.s[0][2].equals("0") && Matrix.s[1][2].equals("0") && Matrix.s[2][2].equals("0")) {
+        if(zeroWon) {
             gameOn = false;
             System.out.println("Zero won !");
 
